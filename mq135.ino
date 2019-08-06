@@ -1,3 +1,6 @@
+//Hilmi Ogün SEYREK
+//ogunseyrek@gmail.com
+
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x3f,16,2);  
@@ -6,7 +9,6 @@ int olculendeger_mq135=A0;
 int kirmiziPin = 9;
 int yesilPin = 10;
 int maviPin = 11;
-int buzzer = 6;
 
 void setup() 
 {
@@ -16,7 +18,6 @@ void setup()
   pinMode(kirmiziPin, OUTPUT);
   pinMode(yesilPin, OUTPUT);
   pinMode(maviPin, OUTPUT);
-  pinMode(buzzer, OUTPUT);
 }
 
 void loop()   
@@ -37,7 +38,6 @@ void loop()
   lcd.setCursor(0,1);
   lcd.print("Hava Temiz      ");
   RGB(0, 255, 255); //acik mavi
-  analogWrite(buzzer, LOW);
   delay(10000);
   }
   
@@ -48,7 +48,6 @@ void loop()
   lcd.setCursor(0,1);
   lcd.print("CO2 1.Seviye     ");
   RGB(0, 255, 0); //yesil
-  analogWrite(buzzer, LOW);
   delay(10000);
   }
   
@@ -59,7 +58,6 @@ void loop()
   lcd.setCursor(0,1);
   lcd.print("CO2 2.Seviye     ");
   RGB(255, 255, 0); //sari
-  analogWrite(buzzer, LOW);
   delay(10000);
   }
   
@@ -70,7 +68,6 @@ void loop()
   lcd.setCursor(0,1);
   lcd.print("CO2 3.Seviye     ");
   RGB(255, 0, 0); //kırmızı
-  analogWrite(buzzer, LOW);
   delay(10000);
   }
   
@@ -81,7 +78,6 @@ void loop()
   lcd.setCursor(0,1);
   lcd.print("Karbonmonoksit ");
   RGB(80, 0, 80); //mor
-  analogWrite(buzzer, LOW);
   delay(10000);
   }
   
@@ -92,16 +88,12 @@ void loop()
   lcd.setCursor(0,1);
   lcd.print("Propan ve Butan ");
   RGB(255, 255, 255); //acik mavi
-  analogWrite(buzzer, HIGH);
   delay(10000);
   }
   
 }
-
 void RGB(int kirmizi, int yesil, int mavi)
-
 {
-
  analogWrite(kirmiziPin, 255 - kirmizi);
  analogWrite(yesilPin, 255 - yesil);
  analogWrite(maviPin, 255 - mavi);
